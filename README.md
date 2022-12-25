@@ -83,7 +83,7 @@ import { getConfirmationModalData } from 'dogu';
 function DeleteAccount() {
 
   const handleAccountDeletionClick = async () => {
-    const { confirmed, cancelled } = await getConfirmationModalData({
+    const confirmed = await getConfirmationModalData({
       title: 'Delete Account',
       message: 'Are you sure?'
     });
