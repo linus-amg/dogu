@@ -7,7 +7,7 @@
 
 import { observer } from 'mobx-react';
 
-import { useStores } from '~client/hooks/use-stores';
+import { useStores } from '../hooks/use-stores';
 
 function YieldModals() {
   const { modalsStore } = useStores();
