@@ -17,21 +17,23 @@ ship with dogu, a dialogue.
 
 ## Installation
 ```bash
-$ npm install dogu @chakra-ui/react form-serialize
+$ npm install dogu
+$ npm install react react-dom @chakra-ui/react form-serialize mobx mobx-react
 ```
+Yes it is a lot of dependencies, this might not be for you.
 
 ## Usage
 Render the component which will render and contain all the modals.
 ```javascript
 
-import { DoguProvider, YieldModals } from 'dogu';
+import { YieldModals } from 'dogu';
 
 function App() {
   return (
-    <DoguProvider>
+    <>
       {/** here in your App Component or somewhere else **/}
       <YieldModals />
-    </DoguProvider>
+    </>
   );
 }
 ```
