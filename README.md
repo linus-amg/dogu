@@ -6,14 +6,14 @@ Dogu is a JavaScript React utility toolkit which provides proven solutions to co
 > In Japanese there is a 
 word for all objects made, 
 designed, and improved by 
-people: **dogu**.
-
-> The **dogu**, 
+people: **dogu**. The **dogu**, 
 the object or objects that 
 people live with, represent 
 the owner’s personality. 
 One enters into a relation- 
 ship with dogu, a dialogue.
+
+> From the book *10 Principles of Design* by **Cees W. de Jong**
 
 ## Installation
 ```bash
