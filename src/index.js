@@ -1,4 +1,4 @@
 export const YieldModals;
-export const getFormModalData;
-export const getConfirmationModalData;
-export const getPromptModalData;
+export const getFormData;
+export const getConfirmation;
+export const getPrompt;

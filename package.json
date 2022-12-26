@@ -1,8 +1,8 @@
 {
   "name": "dogu",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Dogu is a JavaScript React utility toolkit which provides proven solutions to common user experience challenges. It is very opinionated and is designed to be used in a specific way. It is not a general purpose library. Sorry. It needs to be used in combination with @chakra-ui/react.",
-  "main": "index.js",
+  "main": "src/index.js",
   "peerDependencies": {
     "@chakra-ui/react": "^2.4.4",
     "form-serialize": "^0.7.2",

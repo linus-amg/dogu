@@ -37,11 +37,11 @@ function App() {
 }
 ```
 
-Use the `getFormModalData()` method to open a modal with a form and await completion of the modal, in form of filling and submitting or closing (cancelling).
+Use the `getFormData()` method to open a modal with a form and await completion of the modal, in form of filling and submitting or closing (cancelling).
 
 ```javascript
 
-import { getFormModalData } from 'dogu';
+import { getFormData } from 'dogu';
 
 const addItemFormMetadata = {
   title: 'Add Item',
@@ -58,7 +58,7 @@ const addItemFormMetadata = {
 function InventoryList() {
 
   const handleAddItemClick = async () => {
-    const { data, cancelled } = await getFormModalData(addItemFormMetadata);
+    const { data, cancelled } = await getFormData(addItemFormMetadata);
 
     if (data && !cancelled) {
       // do something with the data object
@@ -76,15 +76,15 @@ function InventoryList() {
 
 ```
 
-Use the `getConfirmationModalData()` method to open a modal with a confirmation message and await completion of the modal, in form of confirming or closing (cancelling).
+Use the `getConfirmation()` method to open a modal with a confirmation message and await completion of the modal, in form of confirming or closing (cancelling).
 
 ```javascript
-import { getConfirmationModalData } from 'dogu';
+import { getConfirmation } from 'dogu';
 
 function DeleteAccount() {
 
   const handleAccountDeletionClick = async () => {
-    const confirmed = await getConfirmationModalData({
+    const confirmed = await getConfirmation({
       title: 'Delete Account',
       message: 'Are you sure?'
     });
@@ -95,20 +95,21 @@ function DeleteAccount() {
 }
 ```
 
-Use the `getPromptModalData()` method to open a modal with a prompt message and await completion of the modal, in form of confirming or closing (cancelling).
+Use the `getPrompt()` method to open a modal with a prompt message and await completion of the modal, in form of confirming or closing (cancelling).
 
 ```javascript
-import { getPromptModalData } from 'dogu';
+import { getPrompt } from 'dogu';
 
 function DeleteAccount() {
 
   const handleAccountDeletionClick = async () => {
-    const { data, cancelled } = await getConfirmationModalData({
+    const { data, cancelled } = await getPrompt({
       title: 'Delete Account',
-      message: 'Please write "delete" to confirm.'
+      message: 'Please write "delete" to confirm.',
+      required: true
     });
 
-    if (data.input === 'delete') {
+    if (data === 'delete') {
       // do something
     }
   }
