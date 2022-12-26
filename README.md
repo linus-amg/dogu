@@ -18,7 +18,6 @@ ship with dogu, a dialogue.
 ## Installation
 ```bash
 $ npm install dogu
-$ npm install react react-dom @chakra-ui/react form-serialize mobx mobx-react
 ```
 Yes it is a lot of dependencies, this might not be for you.
 
