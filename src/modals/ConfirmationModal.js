@@ -1,10 +1,3 @@
-/*
- * Copyright Cero Uno GmbH and/or licensed to Cero Uno GmbH
- * under one or more contributor license agreements. Licensed under a proprietary license.
- * See the License.txt file for more information. You may not use this file
- * except in compliance with the proprietary license.
- */
-
 import {
   Button,
   Modal,
@@ -20,6 +13,36 @@ import {
 
 import { useEffect, useRef } from 'react';
 import { stores } from '../stores/contexts/storesContext';
+
+function ModalForm({ handleClose, handleSubmit, title, description, confirmButtonText, confirmButtonColor }) {
+  return (
+    <form onSubmit={handleSubmit}>
+      <ModalHeader>{title}</ModalHeader>
+      <ModalCloseButton mt={4} mr={3} />
+      <ModalBody>
+        <Text>{description}</Text>
+      </ModalBody>
+      <ModalFooter justifyContent="space-between">
+        <Button
+          size="md"
+          variant="ghost"
+          type="button"
+          onClick={handleClose}
+        >
+          Cancel
+        </Button>
+        <Button
+          size="md"
+          variant="outline"
+          type="submit"
+          colorScheme={confirmButtonColor}
+        >
+          {confirmButtonText}
+        </Button>
+      </ModalFooter>
+    </form>
+  )
+}
 
 function ConfirmationModal({
   title,
@@ -59,36 +82,18 @@ function ConfirmationModal({
       closeOnOverlayClick={false}
       isOpen={isOpen}
       onClose={handleClose}
-      // isCentered
+      isCentered
     >
       <ModalOverlay />
       <ModalContent pb={2} pt={3}>
-        <form onSubmit={handleSubmit}>
-          <ModalHeader>{title}</ModalHeader>
-          <ModalCloseButton mt={4} mr={3} />
-          <ModalBody>
-            <Text>{description}</Text>
-          </ModalBody>
-
-          <ModalFooter justifyContent="space-between">
-            <Button
-              size="md"
-              variant="ghost"
-              type="button"
-              onClick={handleClose}
-            >
-              Cancel
-            </Button>
-            <Button
-              size="md"
-              variant="outline"
-              type="submit"
-              colorScheme={confirmButtonColor}
-            >
-              {confirmButtonText}
-            </Button>
-          </ModalFooter>
-        </form>
+        <ModalForm
+          handleClose={handleClose}
+          handleSubmit={handleSubmit}
+          title={title}
+          description={description} 
+          confirmButtonColor={confirmButtonColor}
+          confirmButtonText={confirmButtonText}
+        />
       </ModalContent>
     </Modal>
   );

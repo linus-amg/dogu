@@ -1,0 +1,28 @@
+{
+  "name": "dogu",
+  "version": "0.0.1",
+  "description": "Dogu is a JavaScript React utility toolkit which provides proven solutions to common user experience challenges. It is very opinionated and is designed to be used in a specific way. It is not a general purpose library. Sorry. It needs to be used in combination with @chakra-ui/react.",
+  "main": "index.js",
+  "peerDependencies": {
+    "@chakra-ui/react": "^2.4.4",
+    "form-serialize": "^0.7.2",
+    "mobx": "^6.7.0",
+    "mobx-react": "^7.6.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://linus-amg@github.com/linus-amg/dogu.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/linus-amg/dogu/issues"
+  },
+  "homepage": "https://github.com/linus-amg/dogu#readme"
+}

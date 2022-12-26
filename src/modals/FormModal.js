@@ -1,10 +1,3 @@
-/*
- * Copyright Cero Uno GmbH and/or licensed to Cero Uno GmbH
- * under one or more contributor license agreements. Licensed under a proprietary license.
- * See the License.txt file for more information. You may not use this file
- * except in compliance with the proprietary license.
- */
-
 import {
   Button,
   FormControl,
@@ -25,7 +18,8 @@ import {
 } from '@chakra-ui/react';
 import serialize from 'form-serialize';
 import { useEffect, useRef, useState } from 'react';
-import { stores } from '~client/stores/contexts/storesContext';
+
+import { stores } from '../stores/contexts/storesContext'
 
 function Field({ field, initialRef }) {
   const [state, setState] = useState(field.defaultChecked);
@@ -124,6 +118,17 @@ function Footer({ handleClose }) {
   )
 }
 
+function ModalForm({ handleSubmit, title, description, fields, initialRef, handleClose }) {
+  return (
+    <form onSubmit={handleSubmit}>
+      <ModalHeader>{title}</ModalHeader>
+      <ModalCloseButton mt={4} mr={3} />
+      <Body description={description} fields={fields} initialRef={initialRef} />
+      <Footer handleClose={handleClose} />
+    </form>
+  )
+}
+
 function FormModal({ fields, title, description, resolve, finalRef }) {
   const { isOpen, onOpen, onClose } = useDisclosure({});
 
@@ -165,12 +170,14 @@ function FormModal({ fields, title, description, resolve, finalRef }) {
     >
       <ModalOverlay />
       <ModalContent pb={2} pt={3}>
-        <form onSubmit={handleSubmit}>
-          <ModalHeader>{title}</ModalHeader>
-          <ModalCloseButton mt={4} mr={3} />
-          <Body description={description} fields={fields} initialRef={initialRef} />
-          <Footer handleClose={handleClose} />
-        </form>
+        <ModalForm
+          title={title}
+          description={description}
+          fields={fields}
+          initialRef={initialRef}
+          handleClose={handleClose}
+          handleSubmit={handleSubmit}
+        />
       </ModalContent>
     </Modal>
   );
