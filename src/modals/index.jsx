@@ -1,4 +1,6 @@
 /* eslint-disable import/prefer-default-export */
+import React from 'react'
+
 import { stores } from '../stores/contexts/storesContext';
 
 export const getFormData = async (options, evt, finalRef) => {

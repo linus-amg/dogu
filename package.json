@@ -12,7 +12,7 @@
     "react-dom": "^18.2.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run --component"
   },
   "repository": {
     "type": "git",
@@ -24,5 +24,9 @@
   "bugs": {
     "url": "https://github.com/linus-amg/dogu/issues"
   },
-  "homepage": "https://github.com/linus-amg/dogu#readme"
+  "homepage": "https://github.com/linus-amg/dogu#readme",
+  "devDependencies": {
+    "cypress": "^12.2.0",
+    "vite": "^3.2.5"
+  }
 }

@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   Button,
   FormControl,
@@ -35,6 +36,7 @@ function Field({ field, initialRef }) {
         <Input
           ref={initialRef}
           name={field.name}
+          data-cy={`field-${field.name}`}
           type={field.type}
           required={field.required}
         />
@@ -48,6 +50,7 @@ function Field({ field, initialRef }) {
         <Input
           ref={initialRef}
           name={field.name}
+          data-cy={`field-${field.name}`}
           type={field.type}
           required={field.required}
         />
@@ -58,7 +61,7 @@ function Field({ field, initialRef }) {
     return (
       <FormControl key={field.name}>
         <FormLabel>
-          <Text fontSize={13} color="gray.500">
+          <Text fontSize={13} color="gray.500" data-cy={`field-${field.name}`}>
             {field.label}
           </Text>
         </FormLabel>
@@ -73,6 +76,7 @@ function Field({ field, initialRef }) {
             name={field.name}
             onChange={toggle}
             id="redirect"
+            data-cy={`field-${field.name}`}
             value="true"
             isChecked={state}
           />
@@ -103,12 +107,13 @@ function Body({ fields, description, initialRef }) {
 function Footer({ handleClose }) {
   return (
     <ModalFooter justifyContent="space-between">
-      <Button size="md" variant="ghost" onClick={handleClose}>
+      <Button size="md" variant="ghost" data-cy="cancel-button" onClick={handleClose}>
         Cancel
       </Button>
       <Button
         size="md"
         type="submit"
+        data-cy="submit-button"
         variant="outline"
         colorScheme="blue"
       >

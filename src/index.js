@@ -1,4 +1,2 @@
-export const YieldModals;
-export const getFormData;
-export const getConfirmation;
-export const getPrompt;
+export { getConfirmation, getFormData, getPrompt } from './modals';
+export { default as YieldModals } from './modals/YieldModals';
