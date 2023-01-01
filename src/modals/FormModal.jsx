@@ -2,6 +2,7 @@ import React from 'react'
 import {
   Button,
   FormControl,
+  FormHelperText,
   FormLabel,
   HStack,
   Input,
@@ -14,6 +15,7 @@ import {
   ModalOverlay,
   Switch,
   Text,
+  Textarea,
   useDisclosure,
   VStack
 } from '@chakra-ui/react';
@@ -29,60 +31,62 @@ function Field({ field, initialRef }) {
     setState(!state);
   };
 
-  if (field.type === 'text') {
+  if (['text', 'number'].includes(field.type)) {
     return (
-      <FormControl key={field.name}>
-        <FormLabel>{field.label}</FormLabel>
+      <>
+        {field.label && <FormLabel>{field.label}</FormLabel>}
         <Input
           ref={initialRef}
-          name={field.name}
           data-cy={`field-${field.name}`}
-          type={field.type}
-          required={field.required}
+          {...field}
         />
-      </FormControl>
+        {field.helperText && <FormHelperText>{field.helperText}</FormHelperText>}
+      </>
     );
   }
-  if (field.type === 'number') {
+
+  if (field.type === 'textarea') {
     return (
-      <FormControl key={field.name}>
-        <FormLabel>{field.label}</FormLabel>
-        <Input
+      <>
+        {field.label && <FormLabel>{field.label}</FormLabel>}
+        <Textarea
           ref={initialRef}
-          name={field.name}
           data-cy={`field-${field.name}`}
-          type={field.type}
-          required={field.required}
+          rows={4}
+          {...field}
         />
-      </FormControl>
-    );
+        {field.helperText && <FormHelperText>{field.helperText}</FormHelperText>}
+      </>
+    )
   }
+
   if (field.type === 'info') {
     return (
-      <FormControl key={field.name}>
+      <>
         <FormLabel>
           <Text fontSize={13} color="gray.500" data-cy={`field-${field.name}`}>
             {field.label}
           </Text>
         </FormLabel>
-      </FormControl>
+      </>
     );
   }
+
   if (field.type === 'checkbox') {
     return (
-      <FormControl key={field.name}>
+      <>
         <HStack>
           <Switch
             name={field.name}
             onChange={toggle}
-            id="redirect"
             data-cy={`field-${field.name}`}
             value="true"
             isChecked={state}
           />
           <FormLabel htmlFor="redirect">{field.label}</FormLabel>
         </HStack>
-      </FormControl>
+        {field.helperText && <FormHelperText>{field.helperText}</FormHelperText>}
+      </>
     );
   }
 }
@@ -93,11 +97,13 @@ function Body({ fields, description, initialRef }) {
       <Text marginBottom={6}>{description}</Text>
       <VStack spacing={5}>
         {fields.map((field, index) => (
-          <Field
-            key={field.name}
-            field={field}
-            initialRef={index === 0 ? initialRef : null}
-          />
+          <FormControl key={field.name}>
+            <Field
+              key={field.name}
+              field={field}
+              initialRef={index === 0 ? initialRef : null}
+            />
+          </FormControl>
         ))}
       </VStack>
     </ModalBody>
