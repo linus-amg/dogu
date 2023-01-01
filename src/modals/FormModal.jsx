@@ -110,7 +110,7 @@ function Body({ fields, description, initialRef }) {
   )
 }
 
-function Footer({ handleClose }) {
+function Footer({ handleClose, submitButtonColor = 'purple' }) {
   return (
     <ModalFooter justifyContent="space-between">
       <Button size="md" variant="ghost" data-cy="cancel-button" onClick={handleClose}>
@@ -121,7 +121,7 @@ function Footer({ handleClose }) {
         type="submit"
         data-cy="submit-button"
         variant="outline"
-        colorScheme="blue"
+        colorScheme={submitButtonColor}
       >
         Save
       </Button>
@@ -129,13 +129,13 @@ function Footer({ handleClose }) {
   )
 }
 
-function ModalForm({ handleSubmit, title, description, fields, initialRef, handleClose }) {
+function ModalForm({ handleSubmit, title, description, fields, initialRef, handleClose, submitButtonColor }) {
   return (
     <form onSubmit={handleSubmit}>
       <ModalHeader>{title}</ModalHeader>
       <ModalCloseButton mt={4} mr={3} />
       <Body description={description} fields={fields} initialRef={initialRef} />
-      <Footer handleClose={handleClose} />
+      <Footer handleClose={handleClose} submitButtonColor={submitButtonColor} />
     </form>
   )
 }
