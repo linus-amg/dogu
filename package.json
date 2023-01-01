@@ -1,6 +1,6 @@
 {
   "name": "dogu",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Dogu is a JavaScript React utility toolkit which provides proven solutions to common user experience challenges. It is very opinionated and is designed to be used in a specific way. It is not a general purpose library. Sorry. It needs to be used in combination with @chakra-ui/react.",
   "main": "./dist/dogu.umd.js",
   "module": "./dist/dogu.es.js",

@@ -19,7 +19,6 @@ ship with dogu, a dialogue.
 ```bash
 $ npm install dogu
 ```
-Yes it is a lot of dependencies, this might not be for you.
 
 ## Usage
 Render the component which will render and contain all the modals.
@@ -45,6 +44,7 @@ import { getFormData } from 'dogu';
 
 const addItemFormMetadata = {
   title: 'Add Item',
+  message: '...',
   fields: [
     {
       name: 'name',

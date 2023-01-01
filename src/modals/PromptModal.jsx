@@ -14,13 +14,13 @@ import {
 import { useEffect, useRef } from 'react';
 import { stores } from '../stores/contexts/storesContext';
 
-function ModalForm({ handleClose, handleSubmit, title, description, confirmButtonText, confirmButtonColor }) {
+function ModalForm({ handleClose, handleSubmit, title, message, confirmButtonText, confirmButtonColor }) {
   return (
     <form onSubmit={handleSubmit}>
       <ModalHeader>{title}</ModalHeader>
       <ModalCloseButton mt={4} mr={3} />
       <ModalBody>
-        <Text>{description}</Text>
+        <Text>{message}</Text>
       </ModalBody>
       <ModalFooter justifyContent="space-between">
         <Button
@@ -46,7 +46,7 @@ function ModalForm({ handleClose, handleSubmit, title, description, confirmButto
 
 function ConfirmationModal({
   title,
-  description,
+  message,
   confirmButtonText = 'Confirm',
   confirmButtonColor = 'purple',
   resolve,
@@ -90,7 +90,7 @@ function ConfirmationModal({
           handleClose={handleClose}
           handleSubmit={handleSubmit}
           title={title}
-          description={description} 
+          message={message} 
           confirmButtonColor={confirmButtonColor}
           confirmButtonText={confirmButtonText}
         />

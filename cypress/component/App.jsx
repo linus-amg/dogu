@@ -10,7 +10,7 @@ const App = ({ onChange }) => {
   }
 
   const handleUserCreation = async () => {
-    const { canceled, data } = await getFormData({ title: 'Create User', description: 'fill out the fields below and click submit to create a new user', fields: [{ name: 'name', type: 'text', label: 'Name' }, { name: 'email', type: 'text', label: 'Email' }, { name: 'bio', type: 'textarea', label: 'Bio' }] });
+    const { canceled, data } = await getFormData({ title: 'Create User', message: 'fill out the fields below and click submit to create a new user', fields: [{ name: 'name', type: 'text', label: 'Name' }, { name: 'email', type: 'text', label: 'Email' }, { name: 'bio', type: 'textarea', label: 'Bio' }] });
     onChange({ canceled, data });
   }
 

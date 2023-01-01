@@ -91,10 +91,10 @@ function Field({ field, initialRef }) {
   }
 }
 
-function Body({ fields, description, initialRef }) {
+function Body({ fields, message, initialRef }) {
   return (
     <ModalBody pb={6}>
-      <Text marginBottom={6}>{description}</Text>
+      {message && <Text marginBottom={6}>{message}</Text>}
       <VStack spacing={5}>
         {fields.map((field, index) => (
           <FormControl key={field.name}>
@@ -129,18 +129,18 @@ function Footer({ handleClose, submitButtonColor = 'purple' }) {
   )
 }
 
-function ModalForm({ handleSubmit, title, description, fields, initialRef, handleClose, submitButtonColor }) {
+function ModalForm({ handleSubmit, title, message, fields, initialRef, handleClose, submitButtonColor }) {
   return (
     <form onSubmit={handleSubmit}>
       <ModalHeader>{title}</ModalHeader>
       <ModalCloseButton mt={4} mr={3} />
-      <Body description={description} fields={fields} initialRef={initialRef} />
+      <Body message={message} fields={fields} initialRef={initialRef} />
       <Footer handleClose={handleClose} submitButtonColor={submitButtonColor} />
     </form>
   )
 }
 
-function FormModal({ fields, title, description, resolve, finalRef }) {
+function FormModal({ fields, title, message, resolve, finalRef }) {
   const { isOpen, onOpen, onClose } = useDisclosure({});
 
   const initialRef = useRef();
@@ -183,7 +183,7 @@ function FormModal({ fields, title, description, resolve, finalRef }) {
       <ModalContent pb={2} pt={3}>
         <ModalForm
           title={title}
-          description={description}
+          message={message}
           fields={fields}
           initialRef={initialRef}
           handleClose={handleClose}
