@@ -24,7 +24,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { stores } from '../stores/contexts/storesContext'
 
-function Field({ field, initialRef }) {
+function Field({ field, initialRef, size }) {
   const [state, setState] = useState(field.defaultChecked);
 
   const toggle = () => {
@@ -38,6 +38,7 @@ function Field({ field, initialRef }) {
         <Input
           ref={initialRef}
           data-cy={`field-${field.name}`}
+          size={size}
           {...field}
         />
         {field.helperText && <FormHelperText>{field.helperText}</FormHelperText>}
@@ -53,6 +54,7 @@ function Field({ field, initialRef }) {
           ref={initialRef}
           data-cy={`field-${field.name}`}
           rows={4}
+          size={size}
           {...field}
         />
         {field.helperText && <FormHelperText>{field.helperText}</FormHelperText>}
@@ -82,6 +84,7 @@ function Field({ field, initialRef }) {
             data-cy={`field-${field.name}`}
             value="true"
             isChecked={state}
+            size={size}
           />
           <FormLabel htmlFor="redirect">{field.label}</FormLabel>
         </HStack>
@@ -91,16 +94,17 @@ function Field({ field, initialRef }) {
   }
 }
 
-function Body({ fields, message, initialRef }) {
+function Body({ fields, message, initialRef, size }) {
   return (
     <ModalBody pb={6}>
       {message && <Text marginBottom={6}>{message}</Text>}
       <VStack spacing={5}>
         {fields.map((field, index) => (
-          <FormControl key={field.name}>
+          <FormControl key={field.name} size={size}>
             <Field
               key={field.name}
               field={field}
+              size={size}
               initialRef={index === 0 ? initialRef : null}
             />
           </FormControl>
@@ -110,14 +114,14 @@ function Body({ fields, message, initialRef }) {
   )
 }
 
-function Footer({ handleClose, submitButtonColor = 'purple' }) {
+function Footer({ handleClose, submitButtonColor = 'purple', size }) {
   return (
     <ModalFooter justifyContent="space-between">
       <Button size="md" variant="ghost" data-cy="cancel-button" onClick={handleClose}>
         Cancel
       </Button>
       <Button
-        size="md"
+        size={size}
         type="submit"
         data-cy="submit-button"
         variant="outline"
@@ -129,18 +133,18 @@ function Footer({ handleClose, submitButtonColor = 'purple' }) {
   )
 }
 
-function ModalForm({ handleSubmit, title, message, fields, initialRef, handleClose, submitButtonColor }) {
+function ModalForm({ handleSubmit, title, message, fields, initialRef, handleClose, submitButtonColor, submitButtonText, size }) {
   return (
     <form onSubmit={handleSubmit}>
       <ModalHeader>{title}</ModalHeader>
       <ModalCloseButton mt={4} mr={3} />
-      <Body message={message} fields={fields} initialRef={initialRef} />
-      <Footer handleClose={handleClose} submitButtonColor={submitButtonColor} />
+      <Body message={message} fields={fields} initialRef={initialRef} size={size} />
+      <Footer handleClose={handleClose} submitButtonColor={submitButtonColor} submitButtonText={submitButtonText} size={size} />
     </form>
   )
 }
 
-function FormModal({ fields, title, message, resolve, finalRef }) {
+function FormModal({ fields, title, message, resolve, finalRef, isCentered = true, size = "md" }) {
   const { isOpen, onOpen, onClose } = useDisclosure({});
 
   const initialRef = useRef();
@@ -177,11 +181,12 @@ function FormModal({ fields, title, message, resolve, finalRef }) {
       closeOnOverlayClick={false}
       isOpen={isOpen}
       onClose={handleClose}
-      isCentered
+      isCentered={isCentered}
     >
       <ModalOverlay />
       <ModalContent pb={2} pt={3}>
         <ModalForm
+          size={size}
           title={title}
           message={message}
           fields={fields}
