@@ -114,37 +114,41 @@ function Body({ fields, message, initialRef, size }) {
   )
 }
 
-function Footer({ handleClose, submitButtonColor = 'purple', size }) {
+function Footer({ handleClose, submitButtonColor = 'purple', size, FooterComponent }) {
   return (
     <ModalFooter justifyContent="space-between">
-      <Button size="md" variant="ghost" data-cy="cancel-button" onClick={handleClose}>
-        Cancel
-      </Button>
-      <Button
-        size={size}
-        type="submit"
-        data-cy="submit-button"
-        variant="outline"
-        colorScheme={submitButtonColor}
-      >
-        Save
-      </Button>
+      {FooterComponent ? <FooterComponent handleClose={handleClose} /> : (
+        <>
+          <Button size="md" variant="ghost" data-cy="cancel-button" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button
+            size={size}
+            type="submit"
+            data-cy="submit-button"
+            variant="outline"
+            colorScheme={submitButtonColor}
+          >
+            Save
+          </Button>
+        </>
+      )}
     </ModalFooter>
   )
 }
 
-function ModalForm({ handleSubmit, title, message, fields, initialRef, handleClose, submitButtonColor, submitButtonText, size }) {
+function ModalForm({ handleSubmit, title, message, fields, initialRef, handleClose, submitButtonColor, submitButtonText, size, FooterComponent }) {
   return (
     <form onSubmit={handleSubmit}>
       <ModalHeader>{title}</ModalHeader>
       <ModalCloseButton mt={4} mr={3} />
       <Body message={message} fields={fields} initialRef={initialRef} size={size} />
-      <Footer handleClose={handleClose} submitButtonColor={submitButtonColor} submitButtonText={submitButtonText} size={size} />
+      <Footer handleClose={handleClose} submitButtonColor={submitButtonColor} submitButtonText={submitButtonText} size={size} FooterComponent={FooterComponent} />
     </form>
   )
 }
 
-function FormModal({ fields, title, message, resolve, finalRef, isCentered = true, size = "md" }) {
+function FormModal({ fields, title, message, resolve, finalRef, isCentered = true, size = "md", FooterComponent = null }) {
   const { isOpen, onOpen, onClose } = useDisclosure({});
 
   const initialRef = useRef();
@@ -193,6 +197,7 @@ function FormModal({ fields, title, message, resolve, finalRef, isCentered = tru
           initialRef={initialRef}
           handleClose={handleClose}
           handleSubmit={handleSubmit}
+          FooterComponent={FooterComponent}
         />
       </ModalContent>
     </Modal>
